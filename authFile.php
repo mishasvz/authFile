@@ -27,12 +27,16 @@ class AuthFile
         }
         return $this;
     }
+    private function generateData(){
+        $data $this->login_length.'a'.$this->generateLogin().$this->generateSalt($this->salt_start_length);
+        return $data;
+    }
     public function generateMasterFile(){
-        $data = $this->login_length.'a'.$this->generateLogin().$this->generateSalt($this->salt_start_length).$this->generateHash($this->login.$this->email.$this->password).$this->generateSalt(25496);
+        $data = $this->generateData().$this->generateHash($this->login.$this->email.$this->password).$this->generateSalt(25496);
         return $data;
     }
     public function generateKeyFile(){
-        $data = $this->login_length.'a'.$this->generateLogin().$this->generateSalt($this->salt_start_length).$this->generateHash($this->password).$this->generateSalt(25496);
+        $data = $this->generateData().$this->generateHash($this->password).$this->generateSalt(25496);
         return $data;
     }
     private function generateLogin(){
