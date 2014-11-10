@@ -28,7 +28,7 @@ class AuthFile
         return $this;
     }
     private function generateData(){
-        $data $this->login_length.'a'.$this->generateLogin().$this->generateSalt($this->salt_start_length);
+        $data = $this->login_length.'a'.$this->generateLogin().$this->generateSalt($this->salt_start_length);
         return $data;
     }
     public function generateMasterFile(){
